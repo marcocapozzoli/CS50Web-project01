@@ -1,0 +1,24 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Enciclopédia
+{% endblock %}
+
+{% block body %}
+    <div>
+        <h1>Resultados da Pesquisa</h1><br>
+    </div>
+    
+    <div>
+        {% for k in title %}
+            {% if newtitle in k %}
+                <ul>
+                    <li>
+                        <a href="{% url 'entrypage' k %}">{{ k.capitalize }}</a>
+                    </li>
+                </ul>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+{% endblock %}

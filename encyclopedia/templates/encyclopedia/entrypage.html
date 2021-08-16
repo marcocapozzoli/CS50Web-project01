@@ -1,0 +1,25 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+
+    <div>  
+        {% if title_body %}
+            <form action="{% url 'editpage' %}" method="POST">
+                {% csrf_token %}
+                {{ html|safe }}<br><br>
+                <input type="hidden" name="title" value="{{ title }}">
+                <input type="hidden" name="body" value="{{ title_body }}">
+                <input type="submit" value="Editar Página">
+            </form>            
+        {% else %}
+            <h1>Error: File not found</h1><br>
+            <p>O URL solicitado não foi encontrado</p>
+        {% endif %}
+    </div>
+    
+
+{% endblock %}

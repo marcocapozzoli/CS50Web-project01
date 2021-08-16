@@ -1,0 +1,32 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Nova Página
+{% endblock %}
+
+{% block body %}
+    <h3><em>Crie uma Página</em></h3>
+    <form action="{% url 'newpage' %}" method="POST">
+        {% csrf_token %}
+        {{ newpage.page_title.label }}<br>
+        {{ newpage.page_title }}<br><br>
+        {{ newpage.content.label }}<br>
+        {{ newpage.content }}<br>
+        <input name="save_newpage" type="submit" value="Salvar">
+        
+        <!-- O Padrão de mensagem no template é esse. Um FOR dentro de um IF
+             lembrando que o messages não precisa ser passado no contexto no view-->
+        {% if messages %}
+            {% for message in messages %}
+                <div role="alert">
+                {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </form>
+
+    <div>
+        {{ titulo }}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Edit Page
+{% endblock %}
+
+{% block body %}
+    <h3><em>Página de Edição</em></h3>
+    <form action="{% url 'editsave' %}" method="POST">
+        {% csrf_token %}
+        <label>Título da Página:</label><br>
+        <input type="text" name="title" value="{{ title }}"><br><br>
+        <textarea name="body" style="height:200px;width:900px">{{ body }}</textarea><br>
+        <input name="save_newpage" type="submit" value="Salvar">
+        <!-- O Padrão de mensagem no template é esse. Um FOR dentro de um IF
+             lembrando que o messages não precisa ser passado no contexto no view-->
+        {% if messages %}
+            {% for message in messages %}
+                <div role="alert">
+                {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </form>
+{% endblock %}
